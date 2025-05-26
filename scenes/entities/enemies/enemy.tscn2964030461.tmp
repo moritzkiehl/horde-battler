@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://dgbfv1x60n6jy"]
+
+[ext_resource type="Script" uid="uid://c8af667onuumq" path="res://scenes/enemies/enemy.gd" id="1_8e3ao"]
+[ext_resource type="Texture2D" uid="uid://c7pwmo1v3lwgr" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Blue/Torch_Blue.png" id="2_8e3ao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38ino"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(0, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcftc"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(192, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu5c6"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(384, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6gf"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(576, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt03m"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(768, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7575"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(960, 0, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qch6t"]
+atlas = ExtResource("2_8e3ao")
+region = Rect2(1152, 0, 192, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjrip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38ino")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcftc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb6gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt03m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7575")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qch6t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
+radius = 19.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38ino"]
+size = Vector2(41, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ao"]
+size = Vector2(22.6563, 71.0938)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemies", "with_hp"]]
+script = ExtResource("1_8e3ao")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fjrip")
+flip_h = true
+
+[node name="enemyCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_3vyb7")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="hitboxBody" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.5, 15)
+shape = SubResource("RectangleShape2D_38ino")
+debug_color = Color(0.982831, 0, 0.358618, 0.42)
+
+[node name="hitboxWeapon" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(33, 5)
+shape = SubResource("RectangleShape2D_8e3ao")
+debug_color = Color(0.982831, 0, 0.358618, 0.42)
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

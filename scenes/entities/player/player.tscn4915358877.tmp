@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=3 uid="uid://cr6o33ycc23tl"]
+
+[ext_resource type="Script" uid="uid://di6s2r4i3430k" path="res://scenes/entities/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://bvvxj4vriwh1h" path="res://assets/camelot_ [version 1.0]/percival_.png" id="3_4fs46"]
+[ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/healthBar.tscn" id="3_gmlin"]
+[ext_resource type="PackedScene" uid="uid://dpyyddlb442xo" path="res://scenes/entities/items/weapons/sword/sword.tscn" id="5_bjvvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo4e4"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih27x"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5dhb"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tewvn"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eefhw"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fs46"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njr5w"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpw6s"]
+atlas = ExtResource("3_4fs46")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjrip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo4e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih27x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5dhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tewvn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eefhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fs46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njr5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpw6s")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvxji"]
+size = Vector2(40.75, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs46"]
+size = Vector2(6, 11)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_dovo2")
+metadata/_custom_type_script = "uid://bnoftjwj15iu8"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fjrip")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.391611
+
+[node name="vulnerableArea" type="Area2D" parent="AnimatedSprite2D"]
+scale = Vector2(0.2, 0.2)
+
+[node name="vulnerableArea" type="CollisionShape2D" parent="AnimatedSprite2D/vulnerableArea"]
+position = Vector2(0.625, 17)
+shape = SubResource("RectangleShape2D_lvxji")
+debug_color = Color(0.342142, 0.621013, 0, 0.42)
+
+[node name="HealthBar" parent="." instance=ExtResource("3_gmlin")]
+offset_left = -13.0
+offset_top = -17.0
+offset_right = 14.0
+offset_bottom = -12.0
+
+[node name="collisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_4fs46")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Sword" parent="Weapon" instance=ExtResource("5_bjvvg")]
+position = Vector2(2, 6)
+scale = Vector2(0.8, 0.8)
+
+[connection signal="body_entered" from="AnimatedSprite2D/vulnerableArea" to="." method="_on_hurtbox_body_entered"]
