@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://di6s2r4i3430k" path="res://scenes/entities/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://bvvxj4vriwh1h" path="res://assets/camelot_ [version 1.0]/percival_.png" id="3_4fs46"]
 [ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/healthBar.tscn" id="3_gmlin"]
-[ext_resource type="PackedScene" uid="uid://dpyyddlb442xo" path="res://scenes/entities/items/weapons/sword/sword.tscn" id="5_bjvvg"]
+[ext_resource type="PackedScene" uid="uid://ce0sv4egt3ui2" path="res://scenes/entities/items/weapons/staff/staff.tscn" id="4_nh4ur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jo4e4"]
 atlas = ExtResource("3_4fs46")
@@ -80,8 +80,9 @@ size = Vector2(40.75, 68)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs46"]
 size = Vector2(6, 11)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_dovo2")
+health_max = null
 metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -92,6 +93,7 @@ frame_progress = 0.391611
 
 [node name="vulnerableArea" type="Area2D" parent="AnimatedSprite2D"]
 scale = Vector2(0.2, 0.2)
+collision_mask = 512
 
 [node name="vulnerableArea" type="CollisionShape2D" parent="AnimatedSprite2D/vulnerableArea"]
 position = Vector2(0.625, 17)
@@ -109,7 +111,10 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4fs46")
 
 [node name="activeItems" type="Node2D" parent="."]
+position = Vector2(8, 5)
+scale = Vector2(0.7, 0.7)
 
-[node name="Sword" parent="activeItems" instance=ExtResource("5_bjvvg")]
+[node name="staff" parent="activeItems" instance=ExtResource("4_nh4ur")]
+weaponDamage = 10
 
 [connection signal="body_entered" from="AnimatedSprite2D/vulnerableArea" to="." method="_on_hurtbox_body_entered"]

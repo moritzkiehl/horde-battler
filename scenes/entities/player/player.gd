@@ -1,13 +1,10 @@
-extends Entity2D
+class_name Player extends Entity2D
 
 
 const SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 @onready var activeItems = $activeItems;
 var mainWeapon:WeaponBase
-
-signal attack_trigger
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -37,11 +34,10 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.is_action_pressed("attack"):
-		if mainWeapon != null && mainWeapon.has_method('getAnimation'):
-			var attackAnimation:AnimationPlayer = mainWeapon.getAnimation()
-			if attackAnimation.has_animation('attack'):
-				attackAnimation.play('attack')
-			attack_trigger.emit()
+		if mainWeapon != null && mainWeapon.has_method('attack'):
+				mainWeapon.attack()
+			
+				
 
 func _ready() -> void:
 	super._ready()
