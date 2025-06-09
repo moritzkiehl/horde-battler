@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://vyh270y8t3fl"]
+
+[ext_resource type="Script" uid="uid://b8b318fokkimk" path="res://scenes/entities/player/state_machine/state_machine.gd" id="1_bxa00"]
+[ext_resource type="PackedScene" uid="uid://paiyr2stk5xv" path="res://scenes/entities/player/state_machine/states/state.tscn" id="2_kn76f"]
+[ext_resource type="Script" uid="uid://da5lgabb82ixd" path="res://scenes/entities/player/state_machine/states/dash.gd" id="3_pxgco"]
+[ext_resource type="Script" uid="uid://cyjugjlejv2ql" path="res://scenes/entities/player/state_machine/states/idle.gd" id="3_vtl8d"]
+[ext_resource type="Script" uid="uid://cw86y4e08tfrh" path="res://scenes/entities/player/state_machine/states/move.gd" id="4_i01vd"]
+
+[node name="StateMachine" type="Node" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("1_bxa00")
+starting_state = NodePath("idle")
+
+[node name="dash" parent="." node_paths=PackedStringArray("return_state") instance=ExtResource("2_kn76f")]
+script = ExtResource("3_pxgco")
+return_state = NodePath("../idle")
+move_speed = 600.0
+
+[node name="idle" parent="." node_paths=PackedStringArray("dash_state", "move_state") instance=ExtResource("2_kn76f")]
+script = ExtResource("3_vtl8d")
+dash_state = NodePath("../dash")
+move_state = NodePath("../move")
+animation_name = "idle"
+
+[node name="move" parent="." node_paths=PackedStringArray("idle_state", "dash_state") instance=ExtResource("2_kn76f")]
+script = ExtResource("4_i01vd")
+idle_state = NodePath("../idle")
+dash_state = NodePath("../dash")
+animation_name = "move_down"
