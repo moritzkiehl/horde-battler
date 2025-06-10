@@ -19,6 +19,7 @@ move_speed = 600.0
 script = ExtResource("3_vtl8d")
 dash_state = NodePath("../dash")
 move_state = NodePath("../move")
+exhaust_delay = 0.5
 animation_name = "idle"
 
 [node name="move" parent="." node_paths=PackedStringArray("idle_state", "dash_state") instance=ExtResource("2_kn76f")]
