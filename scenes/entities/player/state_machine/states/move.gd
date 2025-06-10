@@ -4,7 +4,6 @@ class_name MoveState extends State
 @export var idle_state: State
 @export var dash_state: State
 
-
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed("dash"):
 		return dash_state
@@ -14,27 +13,39 @@ func process_input(event: InputEvent) -> State:
 
 
 func process_physics(delta: float) -> State:
-	var movementX = Input.get_axis("move_left", "move_right") * move_speed
-	var movementY = Input.get_axis("move_up", "move_down") * move_speed
+	var move_left = Input.get_action_strength("move_left")
+	var move_right = Input.get_action_strength("move_right")
+	var move_up = Input.get_action_strength("move_up")
+	var move_down = Input.get_action_strength("move_down")
+	
+	print(move_left)
 
-	if movementX == 0 && movementY == 0:
+	if move_left == 0 && move_right == 0 && move_up == 0 && move_down == 0:
 		return idle_state
-	if movementX != 0:
+
+	var motion = Vector2()
+
+
+	if (move_left || move_right) && latest_directionX:
+		motion.x = latest_directionX
+	if (move_up || move_down) && latest_directionY:
+		motion.y = latest_directionY
+
+	if motion.x != 0:
 		parent.animations.play("move_side")
-		if movementX > 0:
+		if motion.x > 0:
 			parent.direction = Vector2.RIGHT
-		elif movementX < 0:
+		elif motion.x < 0:
 			parent.direction = Vector2.LEFT
-	elif movementY > 0:
+	elif motion.y > 0:
 		parent.animations.play("move_down")
 		parent.direction = Vector2.DOWN
-	elif movementY < 0:
+	elif motion.y < 0:
 		parent.animations.play("move_up")
 		parent.direction = Vector2.UP
 
-	parent.animations.flip_h = movementX < 0
-	parent.velocity.x = movementX
-	parent.velocity.y = movementY
+	parent.animations.flip_h = motion.x < 0
+	parent.velocity = motion.normalized() * move_speed
 	parent.move_and_slide()
-
+	
 	return null

@@ -18,21 +18,23 @@ func enter(state: State) -> void:
 		start_exhaust()
 
 
+
 func process_input(event: InputEvent) -> State:
 	if exhausted:
 		return null
-	if Input.is_action_just_pressed("dash"):
-		return dash_state
-	if (
-		Input.is_action_just_pressed("move_left")
-		or Input.is_action_just_pressed("move_right")
-		or Input.is_action_just_pressed("move_up")
-		or Input.is_action_just_pressed("move_down")
-	):
-		return move_state
-	if Input.is_action_just_pressed("attack"):
-		return attack_state
-	return
+	else:
+		if Input.is_action_pressed("dash"):
+			return dash_state
+		if (
+			Input.is_action_pressed("move_left")
+			or Input.is_action_pressed("move_right")
+			or Input.is_action_pressed("move_up")
+			or Input.is_action_pressed("move_down")
+		):
+			return move_state
+		if Input.is_action_pressed("attack"):
+			return attack_state
+	return 
 
 
 func init_idle() -> void:
