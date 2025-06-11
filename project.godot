@@ -39,6 +39,7 @@ folder_colors={
 "res://scenes/entities/enemies/": "orange",
 "res://scenes/entities/items/": "yellow",
 "res://scenes/entities/player/": "blue",
+"res://scenes/entities/shared/": "purple",
 "res://scenes/entities/skill/": "teal"
 }
 

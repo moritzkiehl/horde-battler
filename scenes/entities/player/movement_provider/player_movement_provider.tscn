@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbuoswa6cr4my"]
+
+[ext_resource type="Script" uid="uid://cpw3qh83yd0y8" path="res://scenes/entities/player/movement_provider/player_movement_provider.gd" id="1_ndyp1"]
+
+[node name="PlayerMovementProvider" type="Node"]
+script = ExtResource("1_ndyp1")
+metadata/_custom_type_script = "uid://cpw3qh83yd0y8"

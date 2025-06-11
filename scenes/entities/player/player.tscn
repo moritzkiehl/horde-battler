@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cr6o33ycc23tl"]
+[gd_scene load_steps=44 format=3 uid="uid://cr6o33ycc23tl"]
 
 [ext_resource type="Script" uid="uid://di6s2r4i3430k" path="res://scenes/entities/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://sniqnjbx8oeh" path="res://scenes/entities/player/assets/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_bjvvg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ba3qyrhchu463" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Down-Sheet.png" id="5_5sj0x"]
 [ext_resource type="Texture2D" uid="uid://dca33ah11pvwf" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Side-Sheet.png" id="6_ovg4i"]
 [ext_resource type="Texture2D" uid="uid://b7n17gs6efrpy" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Up-Sheet.png" id="7_7wli1"]
+[ext_resource type="PackedScene" uid="uid://cbuoswa6cr4my" path="res://scenes/entities/player/movement_provider/player_movement_provider.tscn" id="10_ovg4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8akj5"]
 atlas = ExtResource("2_bjvvg")
@@ -259,9 +260,11 @@ size = Vector2(39.75, 130.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs46"]
 size = Vector2(6, 24)
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["players"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "movement_provider") groups=["players"]]
 script = ExtResource("1_dovo2")
+animations = NodePath("animations")
 state_machine = NodePath("StateMachine")
+movement_provider = NodePath("PlayerMovementProvider")
 metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
@@ -293,5 +296,7 @@ position = Vector2(8, 5)
 scale = Vector2(0.7, 0.7)
 
 [node name="StateMachine" parent="." instance=ExtResource("4_nh4ur")]
+
+[node name="PlayerMovementProvider" parent="." instance=ExtResource("10_ovg4i")]
 
 [connection signal="body_entered" from="animations/vulnerableArea" to="." method="_on_hurtbox_body_entered"]

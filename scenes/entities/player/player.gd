@@ -6,8 +6,9 @@ var direction = Vector2.RIGHT
 var exhausted = false;
 
 @onready var activeItems = $activeItems
-@onready var animations = $animations
+@export var animations: AnimatedSprite2D
 @export var state_machine: StateMachine
+@export var movement_provider: MovementProvider
 
 var mainWeapon: WeaponBase
 
@@ -16,7 +17,7 @@ func _ready() -> void:
 	super._ready()
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
-	state_machine.init(self)
+	state_machine.init(self, animations, movement_provider)
 	for item in activeItems.get_children():
 		if item is WeaponBase:
 			mainWeapon = item
