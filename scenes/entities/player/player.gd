@@ -3,6 +3,7 @@ class_name Player extends Entity2D
 const SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 var direction = Vector2.RIGHT
+var exhausted = false;
 
 @onready var activeItems = $activeItems
 @onready var animations = $animations

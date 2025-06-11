@@ -1,4 +1,4 @@
-class_name MoveState extends State
+class_name MoveState extends MovementBaseState
 
 @export var attack_state: State
 @export var idle_state: State

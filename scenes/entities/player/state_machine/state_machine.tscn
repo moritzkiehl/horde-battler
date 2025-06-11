@@ -12,14 +12,15 @@ starting_state = NodePath("idle")
 
 [node name="dash" parent="." node_paths=PackedStringArray("return_state") instance=ExtResource("2_kn76f")]
 script = ExtResource("3_pxgco")
+dash_duration = 0.1
 return_state = NodePath("../idle")
-move_speed = 600.0
+move_speed = 800.0
 
 [node name="idle" parent="." node_paths=PackedStringArray("dash_state", "move_state") instance=ExtResource("2_kn76f")]
 script = ExtResource("3_vtl8d")
 dash_state = NodePath("../dash")
 move_state = NodePath("../move")
-exhaust_delay = 0.5
+exhaust_delay = 0.1
 animation_name = "idle"
 
 [node name="move" parent="." node_paths=PackedStringArray("idle_state", "dash_state") instance=ExtResource("2_kn76f")]

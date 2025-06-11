@@ -1,10 +1,9 @@
-class_name DashState extends State
+class_name DashState extends MovementBaseState
 
 @export var dash_duration: float = 0.25
 
 @export var return_state: State
 @export var attack_state: State
-
 
 var dashing: bool = false
 
@@ -55,6 +54,7 @@ func start_dash() -> void:
 
 func end_dash() -> void:
 	dashing = false
+	exit()
 	print("End Dash")
 
 

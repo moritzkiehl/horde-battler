@@ -8,21 +8,17 @@ class_name IdleState extends State
 
 @export var exhaust_delay: float = 0.25
 
-var exhausted = false
-
-
 func enter(state: State) -> void:
 	super(state)
-	init_idle()
 	if previous_state is DashState:
 		start_exhaust()
+	init_idle()
+
 
 
 
 func process_input(event: InputEvent) -> State:
-	if exhausted:
-		return null
-	else:
+	if !parent.exhausted:
 		if Input.is_action_pressed("dash"):
 			return dash_state
 		if (
@@ -49,12 +45,13 @@ func init_idle() -> void:
 
 
 func start_exhaust() -> void:
+	parent.exhausted = true
 	initTimer()
 	timer.start(exhaust_delay)
-	print("Start exhaust")
+	print("Start exhaust with duration - " + str(exhaust_delay))
 	timer.timeout.connect(end_exhaust)
 
 
 func end_exhaust() -> void:
 	print("Stop exhaust")
-	exhausted = false
+	parent.exhausted = false
