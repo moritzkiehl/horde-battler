@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cr6o33ycc23tl"]
+[gd_scene load_steps=45 format=3 uid="uid://cr6o33ycc23tl"]
 
 [ext_resource type="Script" uid="uid://di6s2r4i3430k" path="res://scenes/entities/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://sniqnjbx8oeh" path="res://scenes/entities/player/assets/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_bjvvg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ba3qyrhchu463" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Down-Sheet.png" id="5_5sj0x"]
 [ext_resource type="Texture2D" uid="uid://dca33ah11pvwf" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Side-Sheet.png" id="6_ovg4i"]
 [ext_resource type="Texture2D" uid="uid://b7n17gs6efrpy" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Up-Sheet.png" id="7_7wli1"]
+[ext_resource type="PackedScene" uid="uid://dpyyddlb442xo" path="res://scenes/entities/items/weapons/sword/sword.tscn" id="9_7wli1"]
 [ext_resource type="PackedScene" uid="uid://cbuoswa6cr4my" path="res://scenes/entities/player/movement_provider/player_movement_provider.tscn" id="10_ovg4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8akj5"]
@@ -294,6 +295,8 @@ shape = SubResource("RectangleShape2D_4fs46")
 [node name="activeItems" type="Node2D" parent="."]
 position = Vector2(8, 5)
 scale = Vector2(0.7, 0.7)
+
+[node name="Sword" parent="activeItems" instance=ExtResource("9_7wli1")]
 
 [node name="StateMachine" parent="." instance=ExtResource("4_nh4ur")]
 

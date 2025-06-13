@@ -245,9 +245,11 @@ sprite_frames = SubResource("SpriteFrames_s8hll")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAnchor"]
-position = Vector2(0, -12.5)
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_76q7b")
 disabled = true
+one_way_collision_margin = 0.0
+debug_color = Color(0.986575, 0.0295342, 0.290846, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -15,7 +15,6 @@ var movement_provider: MovementProvider
 
 
 func enter(state: State) -> void:
-	print(parent)
 	previous_state = state
 	parent.animations.play(animation_name)
 
@@ -35,8 +34,6 @@ func process_frame(delta: float) -> State:
 func process_physics(delta: float) -> State:
 	return null
 	
-
-
 
 func initTimer() -> void:
 	timer = Timer.new()

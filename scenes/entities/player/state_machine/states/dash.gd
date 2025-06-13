@@ -29,15 +29,10 @@ func process_physics(delta: float) -> State:
 		var move_down = Input.get_action_strength("move_down")
 
 
-		if move_left == 0 && move_right == 0 && move_up == 0 && move_down == 0:
+		if !movement_provider.is_moving():
 			dash_without_key_down()
 		else:
-			var motion = Vector2()
-			if (move_left || move_right) && latest_directionX:
-				motion.x = latest_directionX
-			if (move_up || move_down) && latest_directionY:
-				motion.y = latest_directionY
-			dash_with_key_down(motion)
+			dash_with_key_down(movement_provider.get_movement_vector())
 		parent.move_and_slide()
 		return null
 	else:
