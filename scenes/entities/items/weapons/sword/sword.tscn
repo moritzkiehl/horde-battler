@@ -230,14 +230,12 @@ _data = {
 &"stab": SubResource("Animation_613dp")
 }
 
-[node name="Sword" type="Node2D"]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_gqekq")
-metadata/_custom_type_script = "uid://ctaxvnh418hva"
+animation = NodePath("AnimationPlayer")
 
 [node name="WeaponAnchor" type="Area2D" parent="."]
 position = Vector2(5, 0)
-collision_layer = 4
-collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponAnchor"]
 position = Vector2(0, -9)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtw2h7sqvelie"]
+[gd_scene load_steps=2 format=3 uid="uid://cuj8ho4bg8ylv"]
 
 [ext_resource type="Script" uid="uid://ctaxvnh418hva" path="res://scenes/entities/items/weapons/weaponBase.gd" id="1_fvsbg"]
 

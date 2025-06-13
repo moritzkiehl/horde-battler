@@ -1,11 +1,18 @@
-extends Entity2D
+class_name Enemy extends Entity2D
 
 var run_speed = 75
 var player = null
+var default_health = 50
+@export var health_bar: HealthBar
 
 
 func _ready() -> void:
 	super._ready()
+	if health > default_health:
+		print(get_max_health()/default_health)
+		self.scale = self.scale * (get_max_health()/default_health) 
+
+	health_bar.initHealtBar(self)
 
 
 func _physics_process(delta):
@@ -29,3 +36,8 @@ func _on_DetectRadius_body_exited(body: Node2D):
 func _on_hitbox_area_entered(area: Node2D) -> void:
 	if area.get_parent().has_method("getDamage"):
 		self.take_dmg(area.get_parent().getDamage())
+
+
+func take_dmg(value: int):
+	super.take_dmg(value)
+	health_bar.update()

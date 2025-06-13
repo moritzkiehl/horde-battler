@@ -9,6 +9,8 @@ var exhausted = false;
 @export var animations: AnimatedSprite2D
 @export var state_machine: StateMachine
 @export var movement_provider: MovementProvider
+@export var health_bar: HealthBar
+
 
 var mainWeapon: WeaponBase
 
@@ -17,6 +19,7 @@ func _ready() -> void:
 	super._ready()
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
+	health_bar.initHealtBar(self)
 	state_machine.init(self, animations, movement_provider)
 	for item in activeItems.get_children():
 		if item is WeaponBase:
@@ -51,3 +54,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.is_action_pressed("attack"):
 		if mainWeapon != null && mainWeapon.has_method('attack'):
 				mainWeapon.attack()
+				
+func take_dmg(value: int):
+	super.take_dmg(value)
+	health_bar.update()

@@ -47,12 +47,14 @@ size = Vector2(10, 15)
 size = Vector2(12, 16.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8ylr"]
-radius = 113.04
+radius = 417.173
 
-[node name="enemy" type="CharacterBody2D" groups=["enemies", "with_hp"]]
-collision_layer = 512
-collision_mask = 5
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("health_bar") groups=["enemies", "with_hp"]]
+collision_layer = 516
+collision_mask = 517
 script = ExtResource("1_8e3ao")
+health_bar = NodePath("HealthBar")
+health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjrip")
@@ -60,10 +62,12 @@ autoplay = "default"
 flip_h = true
 
 [node name="enemyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_f1iow")
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 512
 collision_mask = 5
 
@@ -72,6 +76,7 @@ position = Vector2(0, 4.75)
 shape = SubResource("RectangleShape2D_c8ylr")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_38ino")]
+visible = false
 offset_left = -5.0
 offset_top = -9.0
 offset_right = 5.0
@@ -82,6 +87,7 @@ visible = false
 collision_layer = 512
 
 [node name="viewArea" type="CollisionShape2D" parent="detectionRadius"]
+visible = false
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_c8ylr")
 

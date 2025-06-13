@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ba3qyrhchu463" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Down-Sheet.png" id="5_5sj0x"]
 [ext_resource type="Texture2D" uid="uid://dca33ah11pvwf" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Side-Sheet.png" id="6_ovg4i"]
 [ext_resource type="Texture2D" uid="uid://b7n17gs6efrpy" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Up-Sheet.png" id="7_7wli1"]
-[ext_resource type="PackedScene" uid="uid://ce0sv4egt3ui2" path="res://scenes/entities/items/weapons/staff/staff.tscn" id="8_7wli1"]
+[ext_resource type="PackedScene" uid="uid://dpyyddlb442xo" path="res://scenes/entities/items/weapons/sword/sword.tscn" id="9_7wli1"]
 [ext_resource type="PackedScene" uid="uid://cbuoswa6cr4my" path="res://scenes/entities/player/movement_provider/player_movement_provider.tscn" id="10_ovg4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8akj5"]
@@ -261,14 +261,11 @@ size = Vector2(39.75, 130.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs46"]
 size = Vector2(6, 24)
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "movement_provider", "health_bar") groups=["players"]]
-collision_layer = 513
-collision_mask = 513
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "movement_provider") groups=["players"]]
 script = ExtResource("1_dovo2")
 animations = NodePath("animations")
 state_machine = NodePath("StateMachine")
 movement_provider = NodePath("PlayerMovementProvider")
-health_bar = NodePath("HealthBar")
 health = 100
 metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
@@ -286,26 +283,24 @@ position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_lvxji")
 debug_color = Color(0.342142, 0.621013, 0, 0.42)
 
+[node name="HealthBar" parent="." instance=ExtResource("3_gmlin")]
+offset_left = -13.0
+offset_top = -23.0
+offset_right = 14.0
+offset_bottom = -18.0
+
 [node name="collisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_4fs46")
 
 [node name="activeItems" type="Node2D" parent="."]
 position = Vector2(8, 5)
-rotation = 0.193732
-scale = Vector2(1.3, 1.3)
+scale = Vector2(0.7, 0.7)
 
-[node name="staff" parent="activeItems" instance=ExtResource("8_7wli1")]
-
-[node name="HealthBar" parent="." instance=ExtResource("3_gmlin")]
-offset_left = -13.0
-offset_top = -23.0
-offset_right = 14.0
-offset_bottom = -18.0
-value = 10.0
-
-[node name="PlayerMovementProvider" parent="." instance=ExtResource("10_ovg4i")]
+[node name="Sword" parent="activeItems" instance=ExtResource("9_7wli1")]
 
 [node name="StateMachine" parent="." instance=ExtResource("4_nh4ur")]
+
+[node name="PlayerMovementProvider" parent="." instance=ExtResource("10_ovg4i")]
 
 [connection signal="body_entered" from="animations/vulnerableArea" to="." method="_on_hurtbox_body_entered"]

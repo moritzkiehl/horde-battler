@@ -23,11 +23,6 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if dashing:
-		var move_left = Input.get_action_strength("move_left")
-		var move_right = Input.get_action_strength("move_right")
-		var move_up = Input.get_action_strength("move_up")
-		var move_down = Input.get_action_strength("move_down")
-
 
 		if !movement_provider.is_moving():
 			dash_without_key_down()

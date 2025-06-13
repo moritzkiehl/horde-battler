@@ -1,6 +1,6 @@
 class_name Sword extends WeaponBase
 
-@onready var animation: AnimationPlayer = $AnimationPlayer
+@export var animation: AnimationPlayer
 
 
 func attack() -> void:
