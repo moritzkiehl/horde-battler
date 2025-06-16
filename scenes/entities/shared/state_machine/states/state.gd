@@ -9,7 +9,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var previous_state: State
 
 ## Hold a reference to the parent so that it can be controlled by the state
-var parent: CharacterBody2D
+var parent: Entity2D
 var animations: AnimatedSprite2D
 var movement_provider: MovementProvider
 

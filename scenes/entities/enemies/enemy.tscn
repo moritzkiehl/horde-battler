@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgbfv1x60n6jy"]
+[gd_scene load_steps=14 format=3 uid="uid://dgbfv1x60n6jy"]
 
 [ext_resource type="Script" uid="uid://c8af667onuumq" path="res://scenes/entities/enemies/enemy.gd" id="1_8e3ao"]
 [ext_resource type="Texture2D" uid="uid://7kqlil75xln8" path="res://scenes/entities/enemies/goblin/assets/goblin_.png" id="2_f1iow"]
 [ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/healthBar.tscn" id="3_38ino"]
+[ext_resource type="PackedScene" uid="uid://vyh270y8t3fl" path="res://scenes/entities/shared/state_machine/state_machine.tscn" id="4_pm80n"]
+[ext_resource type="PackedScene" uid="uid://b71gprjnxkvcv" path="res://scenes/entities/enemies/enemy_movement_provider/enemy_movement_provider.tscn" id="5_gflvi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27fjs"]
 atlas = ExtResource("2_f1iow")
@@ -49,10 +51,13 @@ size = Vector2(12, 16.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8ylr"]
 radius = 417.173
 
-[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("health_bar") groups=["enemies", "with_hp"]]
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "movement_provider", "health_bar") groups=["enemies", "with_hp"]]
 collision_layer = 516
 collision_mask = 517
 script = ExtResource("1_8e3ao")
+animations = NodePath("AnimatedSprite2D")
+state_machine = NodePath("StateMachine")
+movement_provider = NodePath("EnemyMovementProvider")
 health_bar = NodePath("HealthBar")
 health = 100
 
@@ -75,13 +80,6 @@ collision_mask = 5
 position = Vector2(0, 4.75)
 shape = SubResource("RectangleShape2D_c8ylr")
 
-[node name="HealthBar" parent="." instance=ExtResource("3_38ino")]
-visible = false
-offset_left = -5.0
-offset_top = -9.0
-offset_right = 5.0
-offset_bottom = -6.0
-
 [node name="detectionRadius" type="Area2D" parent="."]
 visible = false
 collision_layer = 512
@@ -90,6 +88,17 @@ collision_layer = 512
 visible = false
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_c8ylr")
+
+[node name="StateMachine" parent="." instance=ExtResource("4_pm80n")]
+
+[node name="HealthBar" parent="." instance=ExtResource("3_38ino")]
+visible = false
+offset_left = -5.0
+offset_top = -9.0
+offset_right = 5.0
+offset_bottom = -6.0
+
+[node name="EnemyMovementProvider" parent="." instance=ExtResource("5_gflvi")]
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

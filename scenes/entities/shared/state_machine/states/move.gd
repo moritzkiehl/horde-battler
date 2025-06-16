@@ -19,17 +19,16 @@ func process_physics(delta: float) -> State:
 		if motion.x != 0:
 			parent.animations.play("move_side")
 			if motion.x > 0:
-				parent.direction = Vector2.RIGHT
+				parent.update_facing_direction(Vector2.RIGHT)
 			elif motion.x < 0:
-				parent.direction = Vector2.LEFT
+				parent.update_facing_direction(Vector2.LEFT)
 		elif motion.y > 0:
 			parent.animations.play("move_down")
-			parent.direction = Vector2.DOWN
+			parent.update_facing_direction(Vector2.DOWN)
 		elif motion.y < 0:
 			parent.animations.play("move_up")
-			parent.direction = Vector2.UP
+			parent.update_facing_direction(Vector2.UP)
 
-		parent.animations.flip_h = motion.x < 0
 		parent.velocity = motion.normalized() * move_speed
 		parent.move_and_slide()
 		return

@@ -3,15 +3,14 @@ class_name Enemy extends Entity2D
 var run_speed = 75
 var player = null
 var default_health = 50
-@export var health_bar: HealthBar
-
 
 func _ready() -> void:
 	super._ready()
 	if health > default_health:
 		print(get_max_health()/default_health)
-		self.scale = self.scale * (get_max_health()/default_health) 
-
+		print(scale)
+		scale = scale * (1/(get_max_health()/default_health))
+		print(scale)
 	health_bar.initHealtBar(self)
 
 

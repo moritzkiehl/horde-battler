@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b71gprjnxkvcv"]
+
+[ext_resource type="Script" uid="uid://djskbl65k7och" path="res://scenes/entities/enemies/enemy_movement_provider/enemy_movement_provider.gd" id="1_pr3b7"]
+
+[node name="EnemyMovementProvider" type="Node"]
+script = ExtResource("1_pr3b7")
+metadata/_custom_type_script = "uid://djskbl65k7och"

@@ -1,14 +1,23 @@
 class_name Entity2D extends CharacterBody2D
-@export_category("EntityInformation")
-@export_group("Health")
+
+@export var animations: AnimatedSprite2D
+@export var state_machine: StateMachine
+@export var movement_provider: MovementProvider
+@export var health_bar: HealthBar
 @export var health: int
 @export var health_max: int = 100
 var health_min: int = 0
+var direction = Vector2.RIGHT
+var exhausted = false;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print(self.name + " starting with health: " + str(health))
+	# Initialize the state machine, passing a reference of the player to the states,
+	# that way they can move and react accordingly
+	health_bar.initHealtBar(self)
+	state_machine.init(self, animations, movement_provider)
 
 
 func take_dmg(value: int):
@@ -22,3 +31,12 @@ func get_current_health() -> int:
 
 func get_max_health() -> int:
 	return health_max
+	
+func update_model_based_on_direction() -> void:
+	animations.flip_h = direction.x < 0
+	pass
+	
+func update_facing_direction(motion: Vector2)-> void:
+	if direction != motion:
+		direction = motion
+		update_model_based_on_direction()
