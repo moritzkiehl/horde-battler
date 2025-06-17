@@ -6,11 +6,7 @@ var default_health = 50
 
 func _ready() -> void:
 	super._ready()
-	if health > default_health:
-		print(get_max_health()/default_health)
-		print(scale)
-		scale = scale * (1/(get_max_health()/default_health))
-		print(scale)
+	self.scale_size_based_on_health()
 	health_bar.initHealtBar(self)
 
 
@@ -40,3 +36,7 @@ func _on_hitbox_area_entered(area: Node2D) -> void:
 func take_dmg(value: int):
 	super.take_dmg(value)
 	health_bar.update()
+	
+func scale_size_based_on_health() -> void:
+	if self.health > default_health:
+		self.scale = scale * (health/default_health)
