@@ -21,35 +21,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var orbit_radius = 11
 	state_machine.process_physics(delta)
-		# Get the mouse position in global coordinates
-	var mouse_position = get_global_mouse_position()
+	update_weapon_position()
 
-	# Calculate the direction vector from the player to the mouse
-	var direction = mouse_position - global_position
-
-	# Calculate the angle (in radians) from the direction vector
-	var angle = direction.angle()
-
-	# Calculate the orbiting node's position
-	var x = orbit_radius * cos(angle)
-	var y = orbit_radius * sin(angle)
-	var offset = Vector2(x, y)
-
-	# Apply the offset to the orbiting node (relative to the player)
-	activeItems.position = offset
-
-	#Rotate the orbiting node for visual effect
-	activeItems.rotation = angle + PI/2 # Adjust PI/2 for desired starting orientation
-	if offset.x < 0 && activeItems.scale.x > 0:
-		activeItems.scale.x *= -1
-	elif offset.x > 0 && activeItems.scale.x < 0:
-		activeItems.scale.x *= -1
-
-
-	# Rotate the orbiting node around the player (optional)
-	# $OrbitingNode.rotation += orbit_speed * delta
 
 
 func _process(delta: float) -> void:
@@ -85,4 +59,34 @@ func update_model_based_on_direction() -> void:
 	if direction == Vector2.RIGHT && animations.flip_h:
 		animations.flip_h = false
 	pass
+
+func update_weapon_position() -> void:
+			# Get the mouse position in global coordinates
+	var mouse_position = get_global_mouse_position()
+
+	# Calculate the direction vector from the player to the mouse
+	var mouse_direction = mouse_position - global_position
+
+	# Calculate the angle (in radians) from the direction vector
+	var angle = mouse_direction.angle()
+
+	# Calculate the orbiting node's position
+	var orbit_radius = 11
+	var x = orbit_radius * cos(angle)
+	var y = orbit_radius * sin(angle)
+	var offset = Vector2(x, y)
+
+	# Apply the offset to the orbiting node (relative to the player)
+	activeItems.position = offset
+
+	#Rotate the orbiting node for visual effect
+	activeItems.rotation = angle + PI/2 # Adjust PI/2 for desired starting orientation
+	if offset.x < 0 && activeItems.scale.x > 0:
+		activeItems.scale.x *= -1
+	elif offset.x > 0 && activeItems.scale.x < 0:
+		activeItems.scale.x *= -1
+
+
+	# Rotate the orbiting node around the player (optional)
+	# $OrbitingNode.rotation += orbit_speed * delta
 	
