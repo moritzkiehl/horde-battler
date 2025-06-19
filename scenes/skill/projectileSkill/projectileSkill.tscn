@@ -50,6 +50,7 @@ animations = [{
 size = Vector2(1.33333, 2.66667)
 
 [node name="ProjectileSkill" type="Node2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_dwkvp")
 metadata/_custom_type_script = "uid://bl8q2tvrwio0l"
 
