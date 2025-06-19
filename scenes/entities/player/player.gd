@@ -4,8 +4,6 @@ const SPEED = 250.0
 
 
 @export var activeItems: ItemContainer
-
-
 var mainWeapon: WeaponBase
 
 
@@ -14,6 +12,7 @@ func _ready() -> void:
 	for item in activeItems.get_children():
 		if item is WeaponBase:
 			mainWeapon = item
+	mainWeapon.init(world,self)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -60,21 +59,19 @@ func update_model_based_on_direction() -> void:
 		animations.flip_h = false
 	pass
 
-func update_weapon_position() -> void:
-			# Get the mouse position in global coordinates
-	var mouse_position = get_global_mouse_position()
-
+func get_mouse_direction() -> Vector2:
 	# Calculate the direction vector from the player to the mouse
-	var mouse_direction = mouse_position - global_position
+	return get_global_mouse_position() - global_position
+
+func update_weapon_position() -> void:
+	# Get the mouse position in global coordinates
 
 	# Calculate the angle (in radians) from the direction vector
-	var angle = mouse_direction.angle()
-
+	var angle = get_mouse_direction().angle()
+	
 	# Calculate the orbiting node's position
-	var orbit_radius = 11
-	var x = orbit_radius * cos(angle)
-	var y = orbit_radius * sin(angle)
-	var offset = Vector2(x, y)
+	var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
+	var offset = Vector2(orbit_radius * cos(angle), orbit_radius * sin(angle))
 
 	# Apply the offset to the orbiting node (relative to the player)
 	activeItems.position = offset
@@ -85,8 +82,9 @@ func update_weapon_position() -> void:
 		activeItems.scale.x *= -1
 	elif offset.x > 0 && activeItems.scale.x < 0:
 		activeItems.scale.x *= -1
-
-
 	# Rotate the orbiting node around the player (optional)
 	# $OrbitingNode.rotation += orbit_speed * delta
+
+func get_action_direction() -> Vector2:
+	return get_mouse_direction()
 	

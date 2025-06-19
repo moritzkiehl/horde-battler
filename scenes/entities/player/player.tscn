@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bao4ooou1xv4j" path="res://scenes/entities/player/assets/Animations/Idle_Base/Idle_Side-Sheet.png" id="3_bj7e2"]
 [ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/healthBar.tscn" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://bjlmsfhad7l2r" path="res://scenes/entities/player/assets/Animations/Idle_Base/Idle_Up-Sheet.png" id="4_1murt"]
-[ext_resource type="PackedScene" uid="uid://vyh270y8t3fl" path="res://scenes/entities/shared/state_machine/state_machine.tscn" id="4_nh4ur"]
+[ext_resource type="PackedScene" uid="uid://vyh270y8t3fl" path="res://scenes/shared/state_machine/state_machine.tscn" id="4_nh4ur"]
 [ext_resource type="Texture2D" uid="uid://ba3qyrhchu463" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Down-Sheet.png" id="5_5sj0x"]
 [ext_resource type="Texture2D" uid="uid://dca33ah11pvwf" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Side-Sheet.png" id="6_ovg4i"]
 [ext_resource type="Texture2D" uid="uid://b7n17gs6efrpy" path="res://scenes/entities/player/assets/Animations/Walk_Base/Walk_Up-Sheet.png" id="7_7wli1"]
-[ext_resource type="PackedScene" uid="uid://dpyyddlb442xo" path="res://scenes/entities/items/weapons/sword/sword.tscn" id="8_7wli1"]
-[ext_resource type="Script" uid="uid://c35j0b70ppogo" path="res://scenes/entities/items/item_container.gd" id="8_j0oqr"]
+[ext_resource type="Script" uid="uid://c35j0b70ppogo" path="res://scenes/items/item_container.gd" id="8_j0oqr"]
+[ext_resource type="PackedScene" uid="uid://ce0sv4egt3ui2" path="res://scenes/items/weapons/staff/staff.tscn" id="9_j0oqr"]
 [ext_resource type="PackedScene" uid="uid://cbuoswa6cr4my" path="res://scenes/entities/player/movement_provider/player_movement_provider.tscn" id="10_ovg4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8akj5"]
@@ -276,7 +276,7 @@ metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"idle_side"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="vulnerableArea" type="Area2D" parent="animations"]
@@ -299,7 +299,7 @@ scale = Vector2(1.3, 1.3)
 script = ExtResource("8_j0oqr")
 metadata/_custom_type_script = "uid://c35j0b70ppogo"
 
-[node name="Sword" parent="activeItems" instance=ExtResource("8_7wli1")]
+[node name="staff" parent="activeItems" instance=ExtResource("9_j0oqr")]
 
 [node name="HealthBar" parent="." instance=ExtResource("3_gmlin")]
 offset_left = -13.0

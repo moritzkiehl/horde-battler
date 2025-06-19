@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dpyyddlb442xo"]
 
-[ext_resource type="Script" uid="uid://555xdm8n1a51" path="res://scenes/entities/items/weapons/sword/sword.gd" id="1_gqekq"]
-[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/entities/items/weapons/sword/assets/excalibur_.png" id="2_w8fsg"]
+[ext_resource type="Script" uid="uid://555xdm8n1a51" path="res://scenes/items/weapons/sword/sword.gd" id="1_gqekq"]
+[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/sword/assets/excalibur_.png" id="2_w8fsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfhly"]
 atlas = ExtResource("2_w8fsg")

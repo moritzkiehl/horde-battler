@@ -1,31 +1,35 @@
 class_name Enemy extends Entity2D
 
 var run_speed = 75
-var player = null
+var target_player = null
 var default_health = 50
+var starting_scale: Vector2
+var minimum_scale:Vector2 = Vector2(0.5,0.5)
 
 func _ready() -> void:
 	super._ready()
-	self.scale_size_based_on_health()
+	starting_scale = scale * (float(health_max)/default_health)
+	print(starting_scale)
+	scale = starting_scale
 	health_bar.initHealtBar(self)
 
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
-	if player:
-		velocity = position.direction_to(player.position) * run_speed
+	if target_player:
+		velocity = position.direction_to(target_player.position) * run_speed
 	move_and_slide()
 
 
 func _on_DetectRadius_body_entered(body: Node2D):
 	print("Body of type " + body.name + " entered")
-	if body.is_in_group("players"):
-		player = body
+	if body.is_in_group("target_players"):
+		target_player = body
 
 
 func _on_DetectRadius_body_exited(body: Node2D):
-	if body == player:
-		player = null
+	if body == target_player:
+		target_player = null
 
 
 func _on_hitbox_area_entered(area: Node2D) -> void:
@@ -35,8 +39,12 @@ func _on_hitbox_area_entered(area: Node2D) -> void:
 
 func take_dmg(value: int):
 	super.take_dmg(value)
+	self.scale_size_based_on_health()
 	health_bar.update()
 	
 func scale_size_based_on_health() -> void:
-	if self.health > default_health:
-		self.scale = scale * (health/default_health)
+	print(health_max/float(health))
+	var new_scale = starting_scale * (float(health) / health_max)
+	
+	if new_scale > minimum_scale:
+		self.scale = new_scale

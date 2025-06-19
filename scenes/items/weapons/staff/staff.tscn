@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://ce0sv4egt3ui2"]
 
-[ext_resource type="Script" uid="uid://cm454ncmtiohx" path="res://scenes/entities/items/weapons/staff/staff.gd" id="1_ucggl"]
-[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/entities/items/weapons/sword/assets/excalibur_.png" id="2_44k0l"]
-[ext_resource type="Texture2D" uid="uid://bemqscgmtoohp" path="res://scenes/entities/items/weapons/staff/assets/staff_ [merlin].png" id="2_n2lgp"]
+[ext_resource type="Script" uid="uid://cm454ncmtiohx" path="res://scenes/items/weapons/staff/staff.gd" id="1_ucggl"]
+[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/sword/assets/excalibur_.png" id="2_44k0l"]
+[ext_resource type="Texture2D" uid="uid://bemqscgmtoohp" path="res://scenes/items/weapons/staff/assets/staff_ [merlin].png" id="2_n2lgp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4h00"]
 atlas = ExtResource("2_n2lgp")
