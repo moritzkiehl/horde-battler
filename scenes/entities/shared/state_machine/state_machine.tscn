@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://vyh270y8t3fl"]
 
-[ext_resource type="Script" uid="uid://b8b318fokkimk" path="res://scenes/shared/state_machine/state_machine.gd" id="1_bxa00"]
-[ext_resource type="PackedScene" uid="uid://paiyr2stk5xv" path="res://scenes/shared/state_machine/states/state.tscn" id="2_kn76f"]
-[ext_resource type="Script" uid="uid://da5lgabb82ixd" path="res://scenes/shared/state_machine/states/dash.gd" id="3_pxgco"]
-[ext_resource type="Script" uid="uid://cyjugjlejv2ql" path="res://scenes/shared/state_machine/states/idle.gd" id="3_vtl8d"]
-[ext_resource type="Script" uid="uid://cw86y4e08tfrh" path="res://scenes/shared/state_machine/states/move.gd" id="4_i01vd"]
+[ext_resource type="Script" uid="uid://b8b318fokkimk" path="res://scenes/entities/shared/state_machine/state_machine.gd" id="1_bxa00"]
+[ext_resource type="PackedScene" uid="uid://paiyr2stk5xv" path="res://scenes/entities/shared/state_machine/states/state.tscn" id="2_kn76f"]
+[ext_resource type="Script" uid="uid://da5lgabb82ixd" path="res://scenes/entities/shared/state_machine/states/dash.gd" id="3_pxgco"]
+[ext_resource type="Script" uid="uid://cyjugjlejv2ql" path="res://scenes/entities/shared/state_machine/states/idle.gd" id="3_vtl8d"]
+[ext_resource type="Script" uid="uid://cw86y4e08tfrh" path="res://scenes/entities/shared/state_machine/states/move.gd" id="4_i01vd"]
 
 [node name="StateMachine" type="Node" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_bxa00")

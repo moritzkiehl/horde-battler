@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c8af667onuumq" path="res://scenes/entities/enemies/enemy.gd" id="1_8e3ao"]
 [ext_resource type="Texture2D" uid="uid://7kqlil75xln8" path="res://scenes/entities/enemies/goblin/assets/goblin_.png" id="2_f1iow"]
-[ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/healthBar.tscn" id="3_38ino"]
-[ext_resource type="PackedScene" uid="uid://vyh270y8t3fl" path="res://scenes/shared/state_machine/state_machine.tscn" id="4_pm80n"]
+[ext_resource type="PackedScene" uid="uid://dytgak7ocr8xj" path="res://scenes/entities/shared/health_bar/healthBar.tscn" id="3_38ino"]
+[ext_resource type="PackedScene" uid="uid://vyh270y8t3fl" path="res://scenes/entities/shared/state_machine/state_machine.tscn" id="4_pm80n"]
 [ext_resource type="PackedScene" uid="uid://b71gprjnxkvcv" path="res://scenes/entities/enemies/enemy_movement_provider/enemy_movement_provider.tscn" id="5_gflvi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27fjs"]

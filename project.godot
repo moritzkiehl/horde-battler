@@ -38,9 +38,10 @@ enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
 folder_colors={
 "res://scenes/entities/enemies/": "orange",
 "res://scenes/entities/player/": "blue",
+"res://scenes/entities/shared/": "purple",
 "res://scenes/items/": "yellow",
-"res://scenes/shared/": "purple",
-"res://scenes/skill/": "teal"
+"res://scenes/skill/": "teal",
+"res://scenes/zones/": "green"
 }
 
 [global_group]

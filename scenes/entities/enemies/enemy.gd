@@ -1,7 +1,7 @@
 class_name Enemy extends Entity2D
 
 var run_speed = 75
-var target_player = null
+var target_player:Entity2D = null
 var default_health = 50
 var starting_scale: Vector2
 var minimum_scale:Vector2 = Vector2(0.5,0.5)
@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
+	print(target_player)
 	if target_player:
 		velocity = position.direction_to(target_player.position) * run_speed
 	move_and_slide()
@@ -23,7 +24,7 @@ func _physics_process(delta):
 
 func _on_DetectRadius_body_entered(body: Node2D):
 	print("Body of type " + body.name + " entered")
-	if body.is_in_group("target_players"):
+	if body.is_in_group("players"):
 		target_player = body
 
 

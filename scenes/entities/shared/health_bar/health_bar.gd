@@ -4,6 +4,7 @@ var character: Entity2D
 
 func initHealtBar(parent_instance: Entity2D) -> void:
 	character = parent_instance
+	self.visible = false
 	max_value = parent_instance.get_max_health()
 	value = parent_instance.get_current_health()
 	min_value = 0
