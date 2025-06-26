@@ -8,7 +8,7 @@ var entityScene = preload("res://scenes/entities/enemies/enemy.tscn")
 #How many units should be spawned at the same time
 @export var spawn_amount: int = 1
 #Number between 0-100 to define a % Chance to spawn a unit
-@export var spawn_variance: int = 0
+@export var spawn_chance: int = 0
 
 @export var spawn_areas: Array[CollisionShape2D]
 
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func spawn() -> void:
 	for spawn_area in spawn_areas:
-		if randi_range(0, 100) >= spawn_variance:
+		if spawn_chance >= randi_range(0, 100):
 			var rect = spawn_area.shape.get_rect()
 			for enemy_count in spawn_amount:
 				var entitiy = entityScene.instantiate()
