@@ -14,7 +14,7 @@ var exhausted = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(self.name + " starting with health: " + str(health))
+	#print(self.name + " starting with health: " + str(health))
 	self.health_max = health
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly

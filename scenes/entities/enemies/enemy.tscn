@@ -49,9 +49,10 @@ size = Vector2(10, 15)
 size = Vector2(12, 16.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8ylr"]
-radius = 417.173
+radius = 229.002
 
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "movement_provider", "health_bar") groups=["enemies", "with_hp"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 516
 collision_mask = 517
 script = ExtResource("1_8e3ao")
@@ -92,7 +93,6 @@ shape = SubResource("CircleShape2D_c8ylr")
 [node name="StateMachine" parent="." instance=ExtResource("4_pm80n")]
 
 [node name="HealthBar" parent="." instance=ExtResource("3_38ino")]
-visible = false
 offset_left = -5.0
 offset_top = -9.0
 offset_right = 5.0

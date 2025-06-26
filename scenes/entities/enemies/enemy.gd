@@ -9,14 +9,13 @@ var minimum_scale:Vector2 = Vector2(0.5,0.5)
 func _ready() -> void:
 	super._ready()
 	starting_scale = scale * (float(health_max)/default_health)
-	print(starting_scale)
+	#print(starting_scale)
 	scale = starting_scale
 	health_bar.initHealtBar(self)
 
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
-	print(target_player)
 	if target_player:
 		velocity = position.direction_to(target_player.position) * run_speed
 	move_and_slide()

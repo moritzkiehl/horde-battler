@@ -10,7 +10,7 @@ var entityScene = preload("res://scenes/entities/enemies/enemy.tscn")
 #Number between 0-100 to define a % Chance to spawn a unit
 @export var spawn_variance: int = 0
 
-@onready var spawn_area: CollisionShape2D = $SpawnArea/CollisionShape2D
+@export var spawn_areas: Array[CollisionShape2D]
 
 
 func _ready() -> void:
@@ -18,11 +18,14 @@ func _ready() -> void:
 
 
 func spawn() -> void:
-	if randi_range(0, 100) > spawn_variance:
-		for enemy_count in spawn_amount:
-			var entitiy = entityScene.instantiate()
+	for spawn_area in spawn_areas:
+		if randi_range(0, 100) >= spawn_variance:
 			var rect = spawn_area.shape.get_rect()
-			var spawn_position = global_position + Vector2(randi_range(rect.position.x, rect.end.x), randi_range(rect.position.y, rect.end.y))
-			world.add_child(entitiy)
-			print("Spawn @" + str(spawn_position))
-			entitiy.global_position =  spawn_position
+			for enemy_count in spawn_amount:
+				var entitiy = entityScene.instantiate()
+				world.add_child(entitiy)
+				print(rect.size)
+				var positionInArea = Vector2(randf_range(rect.position.x, rect.position.x + rect.size.x), randf_range(rect.position.y, rect.position.y + rect.size.y))
+				var spawn_position = spawn_area.global_position + positionInArea
+				print("Spawn @" + str(spawn_position))
+				entitiy.global_position = spawn_position
