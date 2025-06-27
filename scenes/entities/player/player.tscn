@@ -272,6 +272,7 @@ state_machine = NodePath("StateMachine")
 movement_provider = NodePath("PlayerMovementProvider")
 health_bar = NodePath("HealthBar")
 health = 100
+attack_speed = 5.0
 metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]

@@ -4,17 +4,13 @@ class_name MoveState extends MovementBaseState
 @export var idle_state: State
 @export var dash_state: State
 
-func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed("dash"):
-		return dash_state
-	if Input.is_action_just_pressed("attack"):
-		return attack_state
-	return null
-
 
 func process_physics(delta: float) -> State:
-
 	var motion = movement_provider.get_movement_vector()
+	if Input.is_action_just_pressed("dash"):
+		return dash_state
+	if Input.is_action_pressed("attack"):
+		return attack_state
 	if movement_provider.is_moving():
 		if motion.x != 0:
 			parent.animations.play("move_side")

@@ -10,20 +10,13 @@ var dashing: bool = false
 
 func enter(state: State) -> void:
 	super(state)
-	print(parent)
 	start_dash()
 	parent.animations.play(animation_name)
 
-
-func process_input(event: InputEvent) -> State:
+func process_physics(delta: float) -> State:
 	if Input.is_action_just_pressed("attack"):
 		return attack_state
-	return null
-
-
-func process_physics(delta: float) -> State:
 	if dashing:
-
 		if !movement_provider.is_moving():
 			dash_without_key_down()
 		else:

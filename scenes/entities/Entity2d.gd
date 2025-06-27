@@ -6,6 +6,7 @@ class_name Entity2D extends CharacterBody2D
 @export var health_bar: HealthBar
 @export var world:Node2D
 @export var health: int
+@export var attack_speed: float = 1
 var health_max: int
 var health_min: int = 0
 var direction = Vector2.RIGHT
@@ -45,3 +46,9 @@ func update_facing_direction(motion: Vector2)-> void:
 		
 func get_action_direction() -> Vector2:
 	return direction
+
+func attack() -> void:
+	pass
+	
+func getWeaponAttackSpeed() -> float:
+	return attack_speed

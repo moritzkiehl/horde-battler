@@ -17,16 +17,11 @@ func enter(state: State) -> void:
 
 
 
-func process_input(event: InputEvent) -> State:
+func process_physics(delta: float) -> State:
 	if !parent.exhausted:
 		if Input.is_action_pressed("dash"):
 			return dash_state
-		if (
-			Input.is_action_pressed("move_left")
-			or Input.is_action_pressed("move_right")
-			or Input.is_action_pressed("move_up")
-			or Input.is_action_pressed("move_down")
-		):
+		if (movement_provider.get_movement_vector() != Vector2()):
 			return move_state
 		if Input.is_action_pressed("attack"):
 			return attack_state
