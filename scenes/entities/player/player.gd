@@ -2,13 +2,13 @@ class_name Player extends Entity2D
 
 const SPEED = 250.0
 
-@export var activeItems: ItemContainer
+@export var mainHand: ItemContainer
 var mainWeapon: WeaponBase
 
 
 func _ready() -> void:
 	super._ready()
-	for item in activeItems.get_children():
+	for item in mainHand.get_children():
 		if item is WeaponBase:
 			mainWeapon = item
 			mainWeapon.update_attack_speed(attack_speed)
@@ -21,7 +21,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
-	update_weapon_position()
+	if !(attacking):
+		update_weapon_position()
 
 
 func _process(delta: float) -> void:
@@ -42,6 +43,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func attack() -> void:
 	if mainWeapon != null && mainWeapon.has_method("attack"):
 		mainWeapon.attack()
+		if mainWeapon.getWeaponType() == ItemDefinition.WeaponType.MELEE:
+			update_weapon_position_for_melee_attack()
 
 
 func take_dmg(value: int):
@@ -50,7 +53,7 @@ func take_dmg(value: int):
 
 
 func update_model_based_on_direction() -> void:
-	#activeItems.position = activeItems.position * get_relative_mouse_position()
+	#mainHand.position = mainHand.position * get_relative_mouse_position()
 	if direction == Vector2.LEFT:
 		animations.flip_h = true
 
@@ -72,24 +75,53 @@ func update_weapon_position() -> void:
 
 	# Calculate the orbiting node's position
 	var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
-	var offset = Vector2(orbit_radius * cos(angle), orbit_radius * sin(angle))
+	var weapon_position = Vector2(orbit_radius * cos(angle), orbit_radius * sin(angle))
 
+	mainHand.position = weapon_position
+	mainHand.rotation = angle + PI / 2  # Adjust PI/2 for desired starting orientation
 	# Apply the offset to the orbiting node (relative to the player)
-	activeItems.position = offset
+	if weapon_position.x < 0 && mainHand.scale.x > 0:
+		mainHand.scale.x *= -1
+		# Rotate the orbiting node around the player (optional)
+		# $OrbitingNode.rotation += orbit_speed * delta
+	elif weapon_position.x > 0 && mainHand.scale.x < 0:
+		mainHand.scale.x *= -1
+		# Rotate the orbiting node around the player (optional)
+		# $OrbitingNode.rotation += orbit_speed * delta
+	mainHand.rotation = angle + PI / 2  # Adjust PI/2 for desired starting orientation
 
-	#Rotate the orbiting node for visual effect
-	activeItems.rotation = angle + PI / 2  # Adjust PI/2 for desired starting orientation
-	if offset.x < 0 && activeItems.scale.x > 0:
-		activeItems.scale.x *= -1
-	elif offset.x > 0 && activeItems.scale.x < 0:
-		activeItems.scale.x *= -1
-	# Rotate the orbiting node around the player (optional)
-	# $OrbitingNode.rotation += orbit_speed * delta
+
+func update_weapon_position_for_melee_attack() -> void:
+	print("Start Melee")
+	if mainWeapon.getWeaponSubType() == ItemDefinition.WeaponSubType.SLASH:
+		print("Start Slash")
+		# Parameter
+		var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
+		var slash_angle = deg_to_rad(75)
+
+		var mouse_angle = get_mouse_direction().angle()
+		if rad_to_deg(mouse_angle) < -90 or rad_to_deg(mouse_angle) > 90:
+			slash_angle = -slash_angle
+
+		var start_angle = mouse_angle - slash_angle
+		var end_angle = mouse_angle + slash_angle
+
+		var tween = get_tree().create_tween()
+		# Tween calls custom function with angle value over Zeit
+		print( mainWeapon.get_current_attack_speed())
+		tween.tween_method(_update_slash_arc, start_angle, end_angle,  mainWeapon.get_current_attack_speed())
+
+
+func _update_slash_arc(angle: float) -> void:
+	var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
+	mainHand.position = Vector2(cos(angle), sin(angle)) * orbit_radius
+	mainHand.rotation = angle + PI / 2
 
 
 func get_action_direction() -> Vector2:
 	return get_mouse_direction()
-	
+
+
 func get_weapon_attack_speed() -> float:
 	if mainWeapon != null && mainWeapon.has_method("attack"):
 		return mainWeapon.get_current_attack_speed()

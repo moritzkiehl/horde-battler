@@ -1,4 +1,4 @@
-class_name Skill extends Node2D
+class_name Skill extends ItemBase
 @export var damage: int = 10
 
 

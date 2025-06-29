@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce0sv4egt3ui2"]
+[gd_scene load_steps=20 format=3 uid="uid://ce0sv4egt3ui2"]
 
-[ext_resource type="Script" uid="uid://cm454ncmtiohx" path="res://scenes/items/weapons/staff/staff.gd" id="1_ucggl"]
-[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/sword/assets/excalibur_.png" id="2_44k0l"]
-[ext_resource type="Texture2D" uid="uid://bemqscgmtoohp" path="res://scenes/items/weapons/staff/assets/staff_ [merlin].png" id="2_n2lgp"]
+[ext_resource type="Script" uid="uid://cm454ncmtiohx" path="res://scenes/items/weapons/ranged/staff/staff.gd" id="1_ucggl"]
+[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/melee/sword/assets/excalibur_.png" id="2_44k0l"]
+[ext_resource type="Texture2D" uid="uid://bemqscgmtoohp" path="res://scenes/items/weapons/ranged/staff/assets/staff_ [merlin].png" id="2_n2lgp"]
+[ext_resource type="PackedScene" uid="uid://bguh0tlafip28" path="res://scenes/items/skill/projectile_skill/projectile_skill.tscn" id="4_d6q44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4h00"]
 atlas = ExtResource("2_n2lgp")
@@ -209,8 +210,11 @@ _data = {
 &"stab": SubResource("Animation_613dp")
 }
 
-[node name="staff" type="Node2D"]
+[node name="staff" type="Node2D" node_paths=PackedStringArray("skill")]
 script = ExtResource("1_ucggl")
+skill = NodePath("ProjectileSkill")
+weapon_type = 2
+weapon_sub_type = 3
 metadata/_custom_type_script = "uid://ctaxvnh418hva"
 
 [node name="WeaponAnchor" type="Area2D" parent="."]
@@ -232,3 +236,5 @@ disabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_i6bru")
 }
+
+[node name="ProjectileSkill" parent="." instance=ExtResource("4_d6q44")]

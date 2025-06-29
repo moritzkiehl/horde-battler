@@ -1,0 +1,1 @@
+class_name RangedWeaponBase extends WeaponBase

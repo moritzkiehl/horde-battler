@@ -5,6 +5,8 @@ class_name WeaponBase extends ItemBase
 @export var weaponDamage: int = 10
 @export var weaponDistanceToWielder = 15
 @export var baseAttackSpeed:float = 0.5
+@export var weapon_type: ItemDefinition.WeaponType = ItemDefinition.WeaponType.NONE 
+@export var weapon_sub_type: ItemDefinition.WeaponSubType = ItemDefinition.WeaponSubType.NONE 
 var attackSpeed: float
 
 func _ready() -> void:
@@ -25,3 +27,9 @@ func update_attack_speed(multiplier: float) -> void:
 
 func get_current_attack_speed() -> float:
 	return attackSpeed
+	
+func getWeaponType() -> ItemDefinition.WeaponType:
+	return weapon_type
+
+func getWeaponSubType() -> ItemDefinition.WeaponSubType:
+	return weapon_sub_type

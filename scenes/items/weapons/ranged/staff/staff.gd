@@ -1,11 +1,11 @@
-class_name Staff extends WeaponBase
+class_name Staff extends RangedWeaponBase
 
 @onready var animation = $AnimationPlayer
-var projectileSkill = preload("res://scenes/skill/projectileSkill/projectileSkill.tscn")
+@export var skill:Skill
 
 
 func attack() -> void:
 	animation.play("attack")
-	var projectile = projectileSkill.instantiate()
+	var projectile = skill.instantiate()
 	world.add_child(projectile)
 	projectile.launch(wielder.global_position, wielder.get_action_direction())

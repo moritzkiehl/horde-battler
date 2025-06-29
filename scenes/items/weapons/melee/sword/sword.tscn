@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dpyyddlb442xo"]
 
-[ext_resource type="Script" uid="uid://555xdm8n1a51" path="res://scenes/items/weapons/sword/sword.gd" id="1_gqekq"]
-[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/sword/assets/excalibur_.png" id="2_w8fsg"]
+[ext_resource type="Script" uid="uid://555xdm8n1a51" path="res://scenes/items/weapons/melee/sword/sword.gd" id="1_gqekq"]
+[ext_resource type="Texture2D" uid="uid://dasw8cw1esqph" path="res://scenes/items/weapons/melee/sword/assets/excalibur_.png" id="2_w8fsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfhly"]
 atlas = ExtResource("2_w8fsg")
@@ -110,51 +110,38 @@ size = Vector2(6, 13)
 
 [sub_resource type="Animation" id="Animation_rfhly"]
 resource_name = "attack"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponAnchor:rotation")
+tracks/0/path = NodePath("WeaponAnchor/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 2.53073, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponAnchor/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack"]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponAnchor/AnimatedSprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.2, 0.266667, 0.366667, 0.466667),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponAnchor/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.366667, 0.566667, 0.933333, 0.966667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 0]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WeaponAnchor/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.266667),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponAnchor/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -221,6 +208,9 @@ _data = {
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_gqekq")
 animation = NodePath("AnimationPlayer")
+baseAttackSpeed = 1.0
+weapon_type = 1
+weapon_sub_type = 1
 
 [node name="WeaponAnchor" type="Area2D" parent="."]
 
