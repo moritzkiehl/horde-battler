@@ -1,6 +1,5 @@
 class_name Staff extends RangedWeaponBase
 
-@onready var animation = $AnimationPlayer
 @export var skill:Skill
 
 

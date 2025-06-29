@@ -8,6 +8,7 @@ class_name WeaponBase extends ItemBase
 @export var weapon_type: ItemDefinition.WeaponType = ItemDefinition.WeaponType.NONE 
 @export var weapon_sub_type: ItemDefinition.WeaponSubType = ItemDefinition.WeaponSubType.NONE 
 @export var knockback: int = 0
+@export var animation: AnimationPlayer
 
 var attackSpeed: float
 var _orbit_radius: float = 0.0

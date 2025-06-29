@@ -210,11 +210,12 @@ _data = {
 &"stab": SubResource("Animation_613dp")
 }
 
-[node name="staff" type="Node2D" node_paths=PackedStringArray("skill")]
+[node name="staff" type="Node2D" node_paths=PackedStringArray("skill", "animation")]
 script = ExtResource("1_ucggl")
 skill = NodePath("ProjectileSkill")
 weapon_type = 2
 weapon_sub_type = 3
+animation = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://ctaxvnh418hva"
 
 [node name="WeaponAnchor" type="Area2D" parent="."]

@@ -207,11 +207,11 @@ _data = {
 
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_gqekq")
-animation = NodePath("AnimationPlayer")
 baseAttackSpeed = 1.0
 weapon_type = 1
 weapon_sub_type = 1
 knockback = 24
+animation = NodePath("AnimationPlayer")
 
 [node name="WeaponAnchor" type="Area2D" parent="."]
 

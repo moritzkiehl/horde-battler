@@ -34,3 +34,19 @@ func tween_circular_motion(
 	tween.tween_method(self._update_orbit, start_angle, end_angle, duration)\
 		.set_trans(trans_type).set_ease(ease_type)
 		
+		
+func attack() -> void:
+	triggerAttackAnimation()
+
+	
+func triggerAttackAnimation() -> void:
+	print(animation.get_animation('attack').length)
+	animation.speed_scale =  animation.get_animation('attack').length / attackSpeed
+	animation.play("attack")
+	
+	if getWeaponType() != ItemDefinition.WeaponType.MELEE:
+		return  # Since Ranged Weapons dont have a special attack animation (Yet) we leave early
+
+	match getWeaponSubType():
+		ItemDefinition.WeaponSubType.SLASH:
+			perform_slash()
