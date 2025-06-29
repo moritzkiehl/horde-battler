@@ -299,6 +299,7 @@ script = ExtResource("8_j0oqr")
 metadata/_custom_type_script = "uid://c35j0b70ppogo"
 
 [node name="Sword" parent="mainHand" instance=ExtResource("9_j0oqr")]
+knockback = 60
 
 [node name="HealthBar" parent="." instance=ExtResource("3_gmlin")]
 offset_left = -13.0

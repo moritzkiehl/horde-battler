@@ -7,6 +7,8 @@ class_name WeaponBase extends ItemBase
 @export var baseAttackSpeed:float = 0.5
 @export var weapon_type: ItemDefinition.WeaponType = ItemDefinition.WeaponType.NONE 
 @export var weapon_sub_type: ItemDefinition.WeaponSubType = ItemDefinition.WeaponSubType.NONE 
+@export var knockback: int = 0
+
 var attackSpeed: float
 var _orbit_radius: float = 0.0
 var _orbit_scale: Vector2 = Vector2(0.5, 1)  # Default: kreisförmig
@@ -66,3 +68,5 @@ func update_weapon_position(get_mouse_direction_func: Callable, flip_sprite := t
 			scale.x *= -1
 		elif weapon_position.x > 0 and scale.x < 0:
 			scale.x *= -1
+func getKnockbackDistance():
+	return knockback

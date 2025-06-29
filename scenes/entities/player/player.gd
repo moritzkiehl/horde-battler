@@ -40,11 +40,17 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 
 func attack() -> void:
-	if mainWeapon != null && mainWeapon.has_method("attack"):
-		mainWeapon.attack()
-		if mainWeapon.getWeaponType() == ItemDefinition.WeaponType.MELEE:
-			update_weapon_position_for_melee_attack()
+	if mainWeapon == null or not mainWeapon.has_method("attack"):
+		return  # early exit in case we have no weapon
 
+	mainWeapon.attack()
+
+	if mainWeapon.getWeaponType() != ItemDefinition.WeaponType.MELEE:
+		return  # Since Ranged Weapons dont have a special attack animation (Yet) we leave early
+
+	match mainWeapon.getWeaponSubType():
+		ItemDefinition.WeaponSubType.SLASH:
+			mainWeapon.perform_slash()
 
 func take_dmg(value: int):
 	super.take_dmg(value)
@@ -64,14 +70,6 @@ func update_model_based_on_direction() -> void:
 func get_mouse_direction() -> Vector2:
 	# Calculate the direction vector from the player to the mouse
 	return get_global_mouse_position() - global_position
-
-
-
-
-func update_weapon_position_for_melee_attack() -> void:
-	print("Start Melee")
-	if mainWeapon.getWeaponSubType() == ItemDefinition.WeaponSubType.SLASH:
-		mainWeapon.perform_slash()
 
 
 func _update_slash_arc(angle: float) -> void:

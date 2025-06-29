@@ -36,7 +36,7 @@ func _on_hitbox_area_entered(area: Node2D) -> void:
 	if (area.get_parent() is WeaponBase):
 		var weapon:WeaponBase = area.get_parent()
 		self.take_dmg(weapon.getDamage())
-
+		apply_knockback_from_weapon(weapon)
 
 func take_dmg(value: int):
 	super.take_dmg(value)

@@ -211,6 +211,7 @@ animation = NodePath("AnimationPlayer")
 baseAttackSpeed = 1.0
 weapon_type = 1
 weapon_sub_type = 1
+knockback = 24
 
 [node name="WeaponAnchor" type="Area2D" parent="."]
 

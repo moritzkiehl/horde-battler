@@ -69,3 +69,15 @@ func update_weapon_position_for_attack() -> void:
 
 func get_weapon_attack_speed() -> float:
 	return attack_speed
+	
+	
+func apply_knockback(current_pos: Vector2, source_pos: Vector2, distance: float, duration := 0.2) -> void:
+	var direction = (current_pos - source_pos).normalized()
+	var target_pos = current_pos + direction * distance
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "global_position", target_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func apply_knockback_from_weapon(weapon: WeaponBase, duration := 0.2) -> void:
+	if(weapon.getKnockbackDistance() > 0):
+		apply_knockback(global_position, weapon.global_position, weapon.getKnockbackDistance(), duration)
