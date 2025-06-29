@@ -22,8 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	if !(attacking):
-		update_weapon_position()
-
+		mainWeapon.update_weapon_position(func(): return get_mouse_direction())
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
@@ -67,49 +66,12 @@ func get_mouse_direction() -> Vector2:
 	return get_global_mouse_position() - global_position
 
 
-func update_weapon_position() -> void:
-	# Get the mouse position in global coordinates
-
-	# Calculate the angle (in radians) from the direction vector
-	var angle = get_mouse_direction().angle()
-
-	# Calculate the orbiting node's position
-	var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
-	var weapon_position = Vector2(orbit_radius * cos(angle), orbit_radius * sin(angle))
-
-	mainHand.position = weapon_position
-	mainHand.rotation = angle + PI / 2  # Adjust PI/2 for desired starting orientation
-	# Apply the offset to the orbiting node (relative to the player)
-	if weapon_position.x < 0 && mainHand.scale.x > 0:
-		mainHand.scale.x *= -1
-		# Rotate the orbiting node around the player (optional)
-		# $OrbitingNode.rotation += orbit_speed * delta
-	elif weapon_position.x > 0 && mainHand.scale.x < 0:
-		mainHand.scale.x *= -1
-		# Rotate the orbiting node around the player (optional)
-		# $OrbitingNode.rotation += orbit_speed * delta
-	mainHand.rotation = angle + PI / 2  # Adjust PI/2 for desired starting orientation
 
 
 func update_weapon_position_for_melee_attack() -> void:
 	print("Start Melee")
 	if mainWeapon.getWeaponSubType() == ItemDefinition.WeaponSubType.SLASH:
-		print("Start Slash")
-		# Parameter
-		var orbit_radius = mainWeapon.get_weapon_distance_to_wielder()
-		var slash_angle = deg_to_rad(75)
-
-		var mouse_angle = get_mouse_direction().angle()
-		if rad_to_deg(mouse_angle) < -90 or rad_to_deg(mouse_angle) > 90:
-			slash_angle = -slash_angle
-
-		var start_angle = mouse_angle - slash_angle
-		var end_angle = mouse_angle + slash_angle
-
-		var tween = get_tree().create_tween()
-		# Tween calls custom function with angle value over Zeit
-		print( mainWeapon.get_current_attack_speed())
-		tween.tween_method(_update_slash_arc, start_angle, end_angle,  mainWeapon.get_current_attack_speed())
+		mainWeapon.perform_slash()
 
 
 func _update_slash_arc(angle: float) -> void:

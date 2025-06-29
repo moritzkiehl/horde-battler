@@ -33,8 +33,9 @@ func _on_DetectRadius_body_exited(body: Node2D):
 
 
 func _on_hitbox_area_entered(area: Node2D) -> void:
-	if area.get_parent().has_method("getDamage"):
-		self.take_dmg(area.get_parent().getDamage())
+	if (area.get_parent() is WeaponBase):
+		var weapon:WeaponBase = area.get_parent()
+		self.take_dmg(weapon.getDamage())
 
 
 func take_dmg(value: int):
