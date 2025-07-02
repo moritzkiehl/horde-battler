@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://2vblagrurc8f"]
+[gd_scene load_steps=9 format=4 uid="uid://2vblagrurc8f"]
 
 [ext_resource type="Script" uid="uid://cbq4kxmtr6fka" path="res://scenes/zones/base/zone.gd" id="1_27olr"]
 [ext_resource type="PackedScene" uid="uid://c6i2demcecpsk" path="res://scenes/entities/shared/spawner/spawner.tscn" id="2_ajihp"]
 [ext_resource type="PackedScene" uid="uid://cr6o33ycc23tl" path="res://scenes/entities/player/player.tscn" id="3_t5cea"]
 [ext_resource type="Texture2D" uid="uid://dvc6s3dra7k80" path="res://assets/Pixel Crawler - Free Pack/Environment/Tilesets/Floors_Tiles.png" id="4_ajihp"]
+[ext_resource type="PackedScene" uid="uid://d1600nqwmb2ys" path="res://scenes/gui/pause_menu/pause_menu.tscn" id="5_t0v2o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0v2o"]
 texture = ExtResource("4_ajihp")
@@ -315,3 +316,7 @@ position = Vector2(109, 281)
 collision_mask = 529
 world = NodePath("..")
 attack_speed = 3.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_t0v2o")]
+size_flags_horizontal = 4
+size_flags_vertical = 4

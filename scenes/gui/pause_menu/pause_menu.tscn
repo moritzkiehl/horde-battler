@@ -1,0 +1,187 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1600nqwmb2ys"]
+
+[ext_resource type="Shader" uid="uid://cca7cw8ckceyi" path="res://scenes/gui/pause_menu/blur.gdshader" id="1_gln6f"]
+[ext_resource type="Script" uid="uid://dysntxd564ofq" path="res://scenes/gui/pause_menu/pause_menu.gd" id="2_oc3hw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3dfgs"]
+shader = ExtResource("1_gln6f")
+shader_parameter/blur = 0.5
+shader_parameter/brightness = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30ksn"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njkny"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.223529, 0.223529, 0.223529, 1)
+shadow_size = 5
+
+[sub_resource type="Animation" id="Animation_jwow7"]
+resource_name = "Pause"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gln6f"]
+resource_name = "Unpause"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.6, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6y67u"]
+_data = {
+&"Pause": SubResource("Animation_jwow7"),
+&"Unpause": SubResource("Animation_gln6f")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+top_level = true
+material = SubResource("ShaderMaterial_3dfgs")
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oc3hw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -76.5
+offset_right = 109.5
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_njkny")
+text = "Continue"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_njkny")
+text = "Options
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_30ksn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_njkny")
+text = "Exit
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6y67u")
+}
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

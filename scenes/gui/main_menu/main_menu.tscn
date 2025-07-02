@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://c07t28sa3pco2"]
+
+[ext_resource type="Script" uid="uid://clwrk7w81pl70" path="res://scenes/gui/main_menu/main_menu.gd" id="1_7fxqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12fp2"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fxqr"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.223529, 0.223529, 0.223529, 1)
+shadow_size = 5
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_7fxqr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -76.5
+offset_right = 109.5
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="New Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fxqr")
+text = "New game"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fxqr")
+text = "Options
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12fp2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fxqr")
+text = "Exit
+"
