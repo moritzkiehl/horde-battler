@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://2vblagrurc8f"]
+[gd_scene load_steps=9 format=4 uid="uid://d34guknhfb58v"]
 
-[ext_resource type="Script" uid="uid://cbq4kxmtr6fka" path="res://scenes/zones/base/zone.gd" id="1_27olr"]
-[ext_resource type="PackedScene" uid="uid://c6i2demcecpsk" path="res://scenes/entities/shared/spawner/spawner.tscn" id="2_ajihp"]
-[ext_resource type="PackedScene" uid="uid://cr6o33ycc23tl" path="res://scenes/entities/player/player.tscn" id="3_t5cea"]
-[ext_resource type="Texture2D" uid="uid://dvc6s3dra7k80" path="res://assets/Pixel Crawler - Free Pack/Environment/Tilesets/Floors_Tiles.png" id="4_ajihp"]
-[ext_resource type="PackedScene" uid="uid://d1600nqwmb2ys" path="res://scenes/gui/pause_menu/pause_menu.tscn" id="5_t0v2o"]
+[ext_resource type="Script" uid="uid://cbq4kxmtr6fka" path="res://scenes/zones/base/zone.gd" id="1_h8itb"]
+[ext_resource type="Texture2D" uid="uid://dvc6s3dra7k80" path="res://assets/Pixel Crawler - Free Pack/Environment/Tilesets/Floors_Tiles.png" id="2_5uf87"]
+[ext_resource type="PackedScene" uid="uid://c6i2demcecpsk" path="res://scenes/entities/shared/spawner/spawner.tscn" id="3_cisf4"]
+[ext_resource type="PackedScene" uid="uid://cr6o33ycc23tl" path="res://scenes/entities/player/player.tscn" id="4_xnj1d"]
+[ext_resource type="PackedScene" uid="uid://d1600nqwmb2ys" path="res://scenes/gui/pause_menu/pause_menu.tscn" id="5_w5bkf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0v2o"]
-texture = ExtResource("4_ajihp")
+texture = ExtResource("2_5uf87")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -275,7 +275,7 @@ sources/0 = SubResource("TileSetAtlasSource_t0v2o")
 size = Vector2(138.367, 119.634)
 
 [node name="Zone" type="Node2D" node_paths=PackedStringArray("player")]
-script = ExtResource("1_27olr")
+script = ExtResource("1_h8itb")
 player = NodePath("player")
 metadata/_custom_type_script = "uid://cbq4kxmtr6fka"
 
@@ -292,7 +292,7 @@ scale = Vector2(0.5, 0.5)
 anchor_mode = 0
 position_smoothing_enabled = true
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("world", "spawn_timer", "spawn_areas") instance=ExtResource("2_ajihp")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("world", "spawn_timer", "spawn_areas") instance=ExtResource("3_cisf4")]
 world = NodePath("..")
 spawn_timer = NodePath("Timer")
 spawn_areas = [NodePath("Spawn Area 1/CollisionShape2D"), NodePath("Spawn Area 3/CollisionShape2D")]
@@ -312,12 +312,12 @@ shape = SubResource("RectangleShape2D_ajihp")
 position = Vector2(430, 282)
 shape = SubResource("RectangleShape2D_ajihp")
 
-[node name="player" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_t5cea")]
+[node name="player" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_xnj1d")]
 position = Vector2(109, 281)
 collision_mask = 529
 world = NodePath("..")
 attack_speed = 3.0
 
-[node name="PauseMenu" parent="." instance=ExtResource("5_t0v2o")]
+[node name="PauseMenu" parent="." instance=ExtResource("5_w5bkf")]
 size_flags_horizontal = 4
 size_flags_vertical = 4

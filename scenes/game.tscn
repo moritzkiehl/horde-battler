@@ -1,9 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpluoxdq77rc"]
 
 [ext_resource type="Script" uid="uid://c83r1uyxlpiq4" path="res://scenes/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://2vblagrurc8f" path="res://scenes/zones/base/Zone.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://c07t28sa3pco2" path="res://scenes/gui/main_menu/main_menu.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
-[node name="Zone" parent="." instance=ExtResource("2_yqjtg")]
+[node name="MainMenu" parent="." instance=ExtResource("2_yqjtg")]
+offset_right = 640.0
+offset_bottom = 360.0

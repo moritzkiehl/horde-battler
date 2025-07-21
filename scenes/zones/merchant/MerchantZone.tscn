@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7mb20eti4kak"]
+
+[ext_resource type="Script" uid="uid://cbq4kxmtr6fka" path="res://scenes/zones/base/zone.gd" id="1_ghkjm"]
+
+[node name="MerchantZone" type="Node2D"]
+script = ExtResource("1_ghkjm")
+metadata/_custom_type_script = "uid://cbq4kxmtr6fka"

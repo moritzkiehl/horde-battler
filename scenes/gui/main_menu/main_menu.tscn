@@ -90,3 +90,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_12fp2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7fxqr")
 text = "Exit
 "
+
+[connection signal="pressed" from="VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
