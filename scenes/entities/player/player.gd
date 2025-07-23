@@ -13,7 +13,7 @@ func _ready() -> void:
 			mainWeapon = item
 			mainWeapon.update_attack_speed(attack_speed)
 	mainWeapon.init(world, self)
-
+	print(mainWeapon.getItemInformationAsJson())
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -78,3 +78,7 @@ func get_weapon_attack_speed() -> float:
 	if mainWeapon != null && mainWeapon.has_method("attack"):
 		return mainWeapon.get_current_attack_speed()
 	return attack_speed
+
+#func pickup_item(itemContainer:LootItemContainer) -> void:
+	
+	
