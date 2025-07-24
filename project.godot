@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalVariables="*res://scenes/global/global_variables.gd"
 ItemDefinition="*res://scenes/global/item_definition.gd"
 SceneManager="*res://scenes/global/scene_manager.gd"
+PlayerInventory="*res://scenes/global/player_inventory.gd"
 
 [display]
 

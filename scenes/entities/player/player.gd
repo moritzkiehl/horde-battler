@@ -15,6 +15,7 @@ func _ready() -> void:
 	mainWeapon.init(world, self)
 	print(mainWeapon.getItemInformationAsJson())
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
@@ -23,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 	if !(attacking):
 		mainWeapon.update_weapon_position(func(): return get_mouse_direction())
+
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
@@ -43,6 +45,7 @@ func attack() -> void:
 	if mainWeapon == null or not mainWeapon.has_method("attack"):
 		return  # early exit in case we have no weapon
 	mainWeapon.attack()
+
 
 func take_dmg(value: int):
 	super.take_dmg(value)
@@ -79,6 +82,10 @@ func get_weapon_attack_speed() -> float:
 		return mainWeapon.get_current_attack_speed()
 	return attack_speed
 
-#func pickup_item(itemContainer:LootItemContainer) -> void:
-	
-	
+
+func pickup_item(itemContainer: ItemContainer) -> void:
+	print("Picked up: " + itemContainer.to_string())
+	PlayerInventory.add_item_to_chest(itemContainer)
+	PlayerInventory.add_item_to_inventory_position(itemContainer.duplicate())
+
+	print("Stored: " + itemContainer.to_string() + " in chest")

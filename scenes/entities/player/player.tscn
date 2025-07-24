@@ -277,7 +277,7 @@ metadata/_custom_type_script = "uid://bnoftjwj15iu8"
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"idle"
+animation = &"idle_side"
 autoplay = "idle"
 
 [node name="vulnerableArea" type="Area2D" parent="animations"]
